@@ -1,28 +1,10 @@
 name: CI
-
 on:
   push:
-    branches: ["master", "main"]
+    branches: [master]
   pull_request:
-    branches: ["master", "main"]
 
 jobs:
   ci:
-    name: Build & Lint
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Biome check
-        run: bun lint
-
-      - name: Build
-        run: bun run build
+    uses: shipshitdev/.github/.github/workflows/ci.yml@master
+    secrets: inherit
